@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "sonner"; // Importamos la librería de alertas
+import { Toaster } from "sonner";
 
-// Configuramos las fuentes
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -11,17 +10,16 @@ const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
 });
 
-// Configuración de SEO y Metadatos para compartir en WhatsApp/Redes
 export const metadata: Metadata = {
-  title: "Jherson | Firma de Abogados en Quito",
+  title: "Espinos Abogados | Firma Jurídica en Quito",
   description:
-    "Asesoría legal de alto nivel para personas y empresas. Especialistas en Derecho Civil, Penal, Empresarial y Laboral. Justicia con precisión.",
+    "Consorcio de abogados especializados en Derecho Civil, Penal, Empresarial y Laboral. Asesoría legal de alto nivel para personas y empresas en Ecuador.",
   openGraph: {
-    title: "Jherson | Firma Jurídica Premium",
+    title: "Espinos Abogados | Firma Jurídica Premium en Quito",
     description:
-      "Estrategia, rigor y compromiso en cada caso. Agenda tu consulta gratuita.",
-    url: "https://lex-ius-demo.vercel.app", // Aquí irá tu dominio final
-    siteName: "Jherson Abogados",
+      "Más de 15 años defendiendo sus derechos. Agenda tu consulta gratuita con nuestros especialistas.",
+    url: "https://espinosabogados.com",
+    siteName: "Espinos Abogados",
     locale: "es_EC",
     type: "website",
   },
@@ -33,11 +31,10 @@ export default function RootLayout({
   return (
     <html lang="es" className="scroll-smooth">
       <body
-        className={`${inter.variable} ${cormorant.variable} bg-[#060911] text-white font-sans antialiased`}
+        className={`${inter.variable} ${cormorant.variable} bg-white text-gray-700 font-sans antialiased`}
       >
         {children}
-        {/* Componente global para mostrar notificaciones */}
-        <Toaster theme="dark" position="bottom-right" richColors />
+        <Toaster position="bottom-right" richColors />
       </body>
     </html>
   );

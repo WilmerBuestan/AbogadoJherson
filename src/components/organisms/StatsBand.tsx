@@ -1,13 +1,23 @@
 'use client';
-import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
-// Subcomponente Molécula: Tarjeta de Estadística Individual
-const StatCard = ({ label, target, suffix = '' }: { label: string; target: number; suffix?: string }) => {
+const StatCard = ({
+  label,
+  target,
+  suffix = '',
+  delay = 0,
+}: {
+  label: string;
+  target: number;
+  suffix?: string;
+  delay?: number;
+}) => {
   const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
 
-  // Lógica simple para el contador animado
   useEffect(() => {
+    if (!started) return;
     let current = 0;
     const step = Math.ceil(target / 50);
     const timer = setInterval(() => {
@@ -20,33 +30,37 @@ const StatCard = ({ label, target, suffix = '' }: { label: string; target: numbe
       }
     }, 30);
     return () => clearInterval(timer);
-  }, [target]);
+  }, [started, target]);
 
   return (
-    <div className="flex-1 min-w-[150px] text-center p-6 border-[0.5px] border-amber-500/10 bg-amber-500/[0.03] hover:bg-amber-500/10 hover:border-amber-500/30 transition-all duration-500 cursor-default">
-      <div className="font-serif text-4xl md:text-5xl font-semibold text-amber-500 mb-2">
-        {count}{suffix}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay }}
+      onViewportEnter={() => setStarted(true)}
+      className="flex-1 min-w-[140px] text-center p-8 border-r border-gray-100 last:border-r-0"
+    >
+      <div className="font-serif text-5xl font-semibold text-[#1C2B4A] mb-2">
+        {count}
+        <span className="text-[#C9A84C]">{suffix}</span>
       </div>
-      <div className="text-xs tracking-[0.12em] uppercase text-slate-400">
-        {label}
-      </div>
-    </div>
+      <div className="text-xs tracking-[0.15em] uppercase text-gray-400">{label}</div>
+    </motion.div>
   );
 };
 
 export const StatsBand = () => {
   return (
-    <motion.section 
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8 }}
-      className="relative z-10 flex flex-wrap justify-center max-w-5xl mx-auto px-6 pb-16"
-    >
-      <StatCard label="Años de experiencia" target={15} />
-      <StatCard label="Casos resueltos" target={800} suffix="+" />
-      <StatCard label="% Satisfacción" target={98} suffix="%" />
-      <StatCard label="Abogados expertos" target={12} />
-    </motion.section>
+    <section className="bg-white border-y border-gray-100">
+      <div className="max-w-5xl mx-auto px-6">
+        <div className="flex flex-wrap justify-center divide-x divide-gray-100">
+          <StatCard label="Años de experiencia" target={15} suffix="+" delay={0} />
+          <StatCard label="Casos resueltos" target={800} suffix="+" delay={0.1} />
+          <StatCard label="% Satisfacción" target={98} suffix="%" delay={0.2} />
+          <StatCard label="Abogados expertos" target={12} delay={0.3} />
+        </div>
+      </div>
+    </section>
   );
 };

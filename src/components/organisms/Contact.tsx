@@ -1,124 +1,152 @@
 'use client';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, MessageCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, MessageCircle } from 'lucide-react';
 import { toast } from 'sonner';
-
 
 export const Contact = () => {
   return (
-    <section id="contacto" className="relative z-10 py-24 px-6 max-w-5xl mx-auto">
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="text-center mb-16"
-      >
-        <span className="text-xs tracking-[0.2em] uppercase text-amber-500 mb-4 block">
-          ✦ Hablemos
-        </span>
-        <h2 className="font-serif text-4xl md:text-5xl font-light text-white leading-tight">
-          Cuéntenos su <em className="text-amber-500 italic">caso</em>
-        </h2>
-        <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mt-6" />
-      </motion.div>
-
+    <section className="py-20 px-6 max-w-5xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-        {/* Columna Izquierda: Formulario */}
+        {/* Formulario */}
         <motion.div
-  initial={{ opacity: 0, x: -30 }}
-  whileInView={{ opacity: 1, x: 0 }}
-  viewport={{ once: true }}
-  className="flex flex-col gap-5"
->
-  <form 
-    onSubmit={(e) => {
-      e.preventDefault(); // Evita que la página se recargue
-      toast.success('Consulta enviada con éxito', {
-        description: 'Un abogado de nuestro equipo revisará su caso y le contactará a la brevedad.',
-      });
-      (e.target as HTMLFormElement).reset(); // Limpia el formulario
-    }} 
-    className="flex flex-col gap-5"
-  >
-    <div className="space-y-1">
-      <label className="text-[10px] tracking-widest uppercase text-slate-400">Nombre completo</label>
-      <input required type="text" placeholder="Su nombre completo" className="w-full bg-white/5 border border-white/10 rounded p-3 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:bg-amber-500/5 transition-all" />
-    </div>
-    <div className="space-y-1">
-      <label className="text-[10px] tracking-widest uppercase text-slate-400">Correo electrónico</label>
-      <input required type="email" placeholder="correo@ejemplo.com" className="w-full bg-white/5 border border-white/10 rounded p-3 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:bg-amber-500/5 transition-all" />
-    </div>
-    <div className="space-y-1">
-      <label className="text-[10px] tracking-widest uppercase text-slate-400">Área de consulta</label>
-      <select required className="w-full bg-white/5 border border-white/10 rounded p-3 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:bg-amber-500/5 transition-all appearance-none">
-        <option value="" className="bg-slate-900">Seleccionar...</option>
-        <option value="civil" className="bg-slate-900">Derecho Civil</option>
-        <option value="penal" className="bg-slate-900">Derecho Penal</option>
-        <option value="empresarial" className="bg-slate-900">Derecho Empresarial</option>
-      </select>
-    </div>
-    <div className="space-y-1">
-      <label className="text-[10px] tracking-widest uppercase text-slate-400">Mensaje</label>
-      <textarea required rows={4} placeholder="Describa brevemente su situación..." className="w-full bg-white/5 border border-white/10 rounded p-3 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:bg-amber-500/5 transition-all resize-none"></textarea>
-    </div>
-    <button type="submit" className="mt-2 w-full bg-amber-500 text-slate-950 font-semibold uppercase tracking-widest text-sm py-4 hover:bg-amber-400 transition-colors rounded-sm cursor-pointer">
-      Enviar Consulta →
-    </button>
-  </form>
-</motion.div>
+          initial={{ opacity: 0, x: -24 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="font-serif text-2xl font-light text-[#1C2B4A] mb-2">
+            Envíenos su <em className="text-[#C9A84C] italic">consulta</em>
+          </h2>
+          <p className="text-sm text-gray-500 mb-7">
+            Un abogado especializado revisará su caso y le contactará dentro de 24 horas.
+          </p>
 
-        {/* Columna Derecha: Información y Mapa */}
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              toast.success('Consulta enviada con éxito', {
+                description: 'Un abogado de nuestro equipo le contactará a la brevedad.',
+              });
+              (e.target as HTMLFormElement).reset();
+            }}
+            className="flex flex-col gap-5"
+          >
+            <div className="space-y-1.5">
+              <label className="text-[10px] tracking-widest uppercase text-gray-400 font-medium">
+                Nombre completo
+              </label>
+              <input
+                required
+                type="text"
+                placeholder="Su nombre completo"
+                className="w-full border border-gray-200 rounded-sm p-3.5 text-sm text-gray-700 focus:outline-none focus:border-[#1C2B4A] focus:ring-1 focus:ring-[#1C2B4A]/20 transition-all bg-white"
+              />
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-[10px] tracking-widest uppercase text-gray-400 font-medium">
+                Correo electrónico
+              </label>
+              <input
+                required
+                type="email"
+                placeholder="correo@ejemplo.com"
+                className="w-full border border-gray-200 rounded-sm p-3.5 text-sm text-gray-700 focus:outline-none focus:border-[#1C2B4A] focus:ring-1 focus:ring-[#1C2B4A]/20 transition-all bg-white"
+              />
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-[10px] tracking-widest uppercase text-gray-400 font-medium">
+                Área de consulta
+              </label>
+              <select
+                required
+                className="w-full border border-gray-200 rounded-sm p-3.5 text-sm text-gray-700 focus:outline-none focus:border-[#1C2B4A] focus:ring-1 focus:ring-[#1C2B4A]/20 transition-all bg-white appearance-none"
+              >
+                <option value="">Seleccionar área...</option>
+                <option value="civil">Derecho Civil</option>
+                <option value="penal">Derecho Penal</option>
+                <option value="empresarial">Derecho Empresarial</option>
+                <option value="laboral">Derecho Laboral</option>
+                <option value="familiar">Derecho Familiar</option>
+                <option value="consultoria">Consultoría Legal</option>
+              </select>
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-[10px] tracking-widest uppercase text-gray-400 font-medium">
+                Describa su caso
+              </label>
+              <textarea
+                required
+                rows={4}
+                placeholder="Explique brevemente su situación legal..."
+                className="w-full border border-gray-200 rounded-sm p-3.5 text-sm text-gray-700 focus:outline-none focus:border-[#1C2B4A] focus:ring-1 focus:ring-[#1C2B4A]/20 transition-all resize-none bg-white"
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-[#1C2B4A] text-white font-semibold uppercase tracking-widest text-sm py-4 hover:bg-[#243660] transition-colors cursor-pointer rounded-sm"
+            >
+              Enviar Consulta →
+            </button>
+          </form>
+        </motion.div>
+
+        {/* Información de contacto */}
         <motion.div
-          initial={{ opacity: 0, x: 30 }}
+          initial={{ opacity: 0, x: 24 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           className="flex flex-col gap-6"
         >
-          <h3 className="font-serif text-2xl font-light text-white">
-            Estamos aquí para <em className="text-amber-500 italic">ayudarle</em>
+          <h3 className="font-serif text-2xl font-light text-[#1C2B4A]">
+            Estamos aquí para <em className="text-[#C9A84C] italic">ayudarle</em>
           </h3>
-          
-          <div className="space-y-4">
-            <div className="flex gap-4 p-4 border border-white/5 bg-white/[0.02] rounded hover:border-amber-500/20 hover:bg-amber-500/5 transition-colors">
-              <div className="w-10 h-10 rounded-full border border-amber-500/20 bg-amber-500/10 flex items-center justify-center flex-shrink-0 text-amber-500">
-                <MapPin size={18} />
-              </div>
-              <div>
-                <h4 className="text-[11px] tracking-widest uppercase text-amber-500 mb-1">Dirección</h4>
-                <p className="text-sm text-slate-300">Av. Amazonas N24-250, piso 8, Quito</p>
-              </div>
-            </div>
 
-            <div className="flex gap-4 p-4 border border-white/5 bg-white/[0.02] rounded hover:border-amber-500/20 hover:bg-amber-500/5 transition-colors">
-              <div className="w-10 h-10 rounded-full border border-amber-500/20 bg-amber-500/10 flex items-center justify-center flex-shrink-0 text-amber-500">
-                <Phone size={18} />
+          <div className="space-y-4">
+            {[
+              { Icon: MapPin, label: 'Dirección', value: 'Av. Amazonas N24-250, piso 8, Quito' },
+              { Icon: Phone, label: 'Teléfono', value: '+593 2 234-5678' },
+              { Icon: Mail, label: 'Correo', value: 'info@espinosabogados.com' },
+            ].map(({ Icon, label, value }) => (
+              <div
+                key={label}
+                className="flex gap-4 p-4 border border-gray-200 rounded-sm hover:border-[#C9A84C]/40 hover:bg-[#F8F5EF]/50 transition-colors"
+              >
+                <div className="w-10 h-10 rounded-full border border-[#C9A84C]/30 bg-[#C9A84C]/10 flex items-center justify-center flex-shrink-0 text-[#C9A84C]">
+                  <Icon size={16} />
+                </div>
+                <div>
+                  <h4 className="text-[10px] tracking-widest uppercase text-[#8B6914] mb-1">{label}</h4>
+                  <p className="text-sm text-gray-600">{value}</p>
+                </div>
               </div>
-              <div>
-                <h4 className="text-[11px] tracking-widest uppercase text-amber-500 mb-1">Teléfono</h4>
-                <p className="text-sm text-slate-300">+593 2 234-5678</p>
-              </div>
-            </div>
+            ))}
           </div>
 
-          <button className="flex items-center justify-center gap-3 w-full py-4 border border-green-500/50 bg-green-500/10 text-green-500 text-sm font-medium uppercase tracking-widest rounded-sm hover:bg-green-500/20 transition-colors mt-2">
+          <a
+            href="https://wa.me/593999999999?text=Hola,%20deseo%20agendar%20una%20consulta%20legal."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-3 w-full py-4 border border-green-600/40 bg-green-50 text-green-700 text-sm font-medium uppercase tracking-widest rounded-sm hover:bg-green-100 transition-colors"
+          >
             <MessageCircle size={18} /> Escribir por WhatsApp
-          </button>
+          </a>
 
-          {/* Caja del Mapa */}
-          <div className="relative h-36 border border-white/10 rounded-sm overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 flex flex-col items-center justify-center group cursor-pointer hover:border-amber-500/30 transition-colors">
-            {/* Patrón de cuadrícula de fondo */}
-            <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(#c9a84c 1px, transparent 1px)', backgroundSize: '16px 16px' }} />
-            
-            <motion.div 
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="relative z-10 text-3xl mb-2"
-            >
-              📍
-            </motion.div>
-            <span className="relative z-10 text-xs text-slate-400 group-hover:text-amber-500 transition-colors">
-              Ver en Google Maps →
-            </span>
+          {/* Horario */}
+          <div className="border border-gray-200 rounded-sm p-5 bg-[#F8F5EF]/50">
+            <h4 className="text-[10px] tracking-widest uppercase text-[#8B6914] mb-4">
+              Horario de atención
+            </h4>
+            <div className="space-y-2">
+              {[
+                { d: 'Lunes – Viernes', h: '08:00 – 18:00' },
+                { d: 'Sábados', h: '09:00 – 13:00' },
+                { d: 'Domingos', h: 'Solo emergencias' },
+              ].map(({ d, h }) => (
+                <div key={d} className="flex justify-between text-sm">
+                  <span className="text-gray-500">{d}</span>
+                  <span className="text-[#1C2B4A] font-medium">{h}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>
